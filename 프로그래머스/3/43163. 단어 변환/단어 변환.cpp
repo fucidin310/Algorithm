@@ -25,12 +25,6 @@ vector<int> GetNextWords(string curWord, vector<string> words){
 int solution(string begin, string target, vector<string> words) {
     int DP[words.size()];
     priority_queue<pair<int, int>> pq;  
-    
-    bool flag = false;
-    for(int i = 0; i < words.size(); i++){
-        if(words[i] == target) flag = true;
-    }
-    if(!flag) return 0;
         
     vector<int> temp = GetNextWords(begin, words);
     
