@@ -14,7 +14,7 @@ int solution(vector<int> A, vector<int> B) {
     int size = A.size();
     
     for(int i = 0; i < size; i++){
-        if(index == size) break;
+        if(index >= size) break;
         
         while(index < size){
             if(A[i] < B[index]){
