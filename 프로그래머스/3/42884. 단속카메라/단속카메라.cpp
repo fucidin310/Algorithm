@@ -14,14 +14,12 @@ int solution(vector<vector<int>> routes) {
         if(routes[i][0] > CameraPos){
             CameraPos = routes[i][1];
             answer++;
-            continue;
         }
-        
-        if(routes[i][0] <= CameraPos){
+        else{
             if(routes[i][1] < CameraPos){
                 CameraPos = routes[i][1];
             }
-        }
+       }
     }
         
     return answer;
