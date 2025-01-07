@@ -5,11 +5,6 @@
 
 using namespace std;
 
-bool cmpGenres(pair<int, int> a, pair<int, int> b){
-    if(a.first != b.first) return a.first > b.first;
-    else return a.second < b.second;
-}
-
 vector<int> solution(vector<string> genres, vector<int> plays) {
     vector<int> answer;
     
@@ -41,7 +36,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
     
     vector<pair<string, int>> genresVec(genresMap.begin(), genresMap.end());
     sort(genresVec.begin(), genresVec.end(), 
-         [](pair<string, int> a, pair<string, int> b)
+         [](pair<string, int>& a, pair<string, int>& b)
          {
              return a.second > b.second;
          }
@@ -53,7 +48,7 @@ vector<int> solution(vector<string> genres, vector<int> plays) {
         vector<pair<int, int>>& songs = playsMap[genre];
         
         sort(songs.begin(), songs.end(),
-            [](pair<int, int> a, pair<int, int> b)
+            [](pair<int, int>& a, pair<int, int>& b)
              {
                  if(a.first != b.first) return a.first > b.first;
                  else return a.second < b.second;
