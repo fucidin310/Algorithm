@@ -7,7 +7,6 @@ int answer = 0;
 int bannedSize = 0;
 vector<vector<int>> myVec;
 vector<int> answerList;
-bool isBan[8];
 
 void BackTracking(int index, int save){
     if(index >= bannedSize){
@@ -26,18 +25,15 @@ void BackTracking(int index, int save){
     }
     
     for(int i = 0; i < myVec[index].size(); i++){
-        if(isBan[myVec[index][i]]) continue;
+        if((save & 1 << myVec[index][i]) != 0) continue;
         
-        isBan[myVec[index][i]] = true;
         BackTracking(index + 1, save | 1 << myVec[index][i]);
-        isBan[myVec[index][i]] = false;        
     }
 }
 
 int solution(vector<string> user_id, vector<string> banned_id) {
     bannedSize = banned_id.size();
     myVec.resize(bannedSize);
-    for(int i = 0; i < user_id.size(); i++) isBan[i] = false;
     
     for(int b = 0; b < banned_id.size(); b++){
         for(int u = 0; u < user_id.size(); u++){
