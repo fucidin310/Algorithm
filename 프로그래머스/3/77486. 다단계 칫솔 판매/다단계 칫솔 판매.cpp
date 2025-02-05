@@ -13,10 +13,10 @@ vector<int> solution(vector<string> enroll, vector<string> referral, vector<stri
         nameMap[enroll[i]] = i;
     }
     
-    vector<int> edges;
+    vector<int> referrals;
     for(int i = 0; i < referral.size(); i++){
-        if(referral[i] == "-") edges.push_back(-1);
-        else edges.push_back(nameMap[referral[i]]);
+        if(referral[i] == "-") referrals.push_back(-1);
+        else referrals.push_back(nameMap[referral[i]]);
     }
     
     for(int i = 0; i < seller.size(); i ++){
@@ -29,7 +29,7 @@ vector<int> solution(vector<string> enroll, vector<string> referral, vector<stri
             
             if(curMoney == 0) break;
             
-            curName = edges[curName];
+            curName = referrals[curName];
             if(curName == -1) break;
         }
     }
