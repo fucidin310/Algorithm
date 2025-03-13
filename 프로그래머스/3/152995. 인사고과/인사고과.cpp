@@ -22,7 +22,7 @@ int solution(vector<vector<int>> scores) {
     int CurMaxBScore = 0;
     
     for(vector<int>& score : scores){   
-        //안사 점수가 바뀌면
+        //인사점수가 바뀌면
         if(LastAScore > score[0]){
             LastAScore = score[0];
             LastMaxBScore = CurMaxBScore;
