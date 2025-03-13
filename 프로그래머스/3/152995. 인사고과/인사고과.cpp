@@ -20,24 +20,22 @@ int solution(vector<vector<int>> scores) {
         if(LastAScore > score[0]){
             LastAScore = score[0];
             LastMaxBScore = CurMaxBScore;
-        }   
+        }               
+        
+        if(CurMaxBScore < score[1]){
+            CurMaxBScore = score[1];
+        }      
         
         if(LastMaxBScore > score[1]){
             if(MyAScore == score[0] && MyBScore == score[1]){
                 answer = -1;
                 break;
-            }
-            else{ 
-                continue;                
+            }           
+        }                        
+        else{
+            if(MyAScore + MyBScore < score[0] + score[1]){
+                answer++;            
             }            
-        }               
-        
-        if(CurMaxBScore < score[1]){
-            CurMaxBScore = score[1];
-        }                           
-        
-        if(MyAScore + MyBScore < score[0] + score[1]){
-            answer++;            
         }
     }
     
