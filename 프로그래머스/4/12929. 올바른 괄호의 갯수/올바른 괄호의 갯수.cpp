@@ -14,6 +14,8 @@ void DFS(int index, int openNum){
     
     if(N - index < openNum) return;
     
+    if(N - index - openNum % 2 == 1) return;
+    
     DFS(index + 1, openNum + 1);
     if(openNum > 0) DFS(index + 1, openNum - 1);
 }
