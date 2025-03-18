@@ -12,6 +12,8 @@ void Backtracking(int index, int openNum){
         return;
     } 
     
+    if(N - index < openNum) return;
+    
     Backtracking(index + 1, openNum + 1);
     if(openNum > 0) Backtracking(index + 1, openNum - 1);
 }
