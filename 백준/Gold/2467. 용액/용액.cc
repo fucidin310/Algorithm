@@ -1,72 +1,47 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
 using namespace std;
 
-int N;
-vector<int> PlusA;
-vector<int> MinusA;
+vector<int> arr;
 
-int Answer1 = 2147483647, Answer2 = 0;
-
-int BinarySearch(int value, int s, int e);
-void CompareAnswer(int A, int B);
-
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-	cin >> N;
-	int temp;
-	for (int i = 0; i < N; i++) {
-		cin >> temp;
-		if (temp > 0) {
-			PlusA.push_back(temp);
-			int nowIndex = i - MinusA.size();
-			if(MinusA.size() > 0)
-				CompareAnswer(BinarySearch(-PlusA[nowIndex], 0, MinusA.size() - 1), PlusA[nowIndex]);
-			if (PlusA.size() > 1)
-				CompareAnswer(PlusA[nowIndex - 1], PlusA[nowIndex]);
-		}
-		else {
-			MinusA.push_back(temp);
-			if(MinusA.size() > 1)
-				CompareAnswer(MinusA[i - 1], MinusA[i]);
-		}
-	}
-	cout << Answer1 << ' ' << Answer2;
-}
-
-int BinarySearch(int value, int s, int e)
+int main()
 {
-	int m = (s + e) / 2;
+	ios_base::sync_with_stdio(false);
+	std::cin.tie(NULL);
+	std::cout.tie(NULL);
 
-	if (s == m || e == m) {
-		if (abs(MinusA[s] - value) > abs(MinusA[e] - value))
-			return MinusA[e];
-		else
-			return MinusA[s];
+	int N;
+	cin >> N;
+
+	int input;
+	for (int i = 0; i < N; i++)
+	{
+		cin >> input;
+		arr.push_back(input);
 	}
 
-	if (MinusA[m] == value)
-		return value;
-	else if (MinusA[m] > value) {
-		return BinarySearch(value, s, m);
-	}
-	else
-		return BinarySearch(value, m, e);
-}
+	int answer_left = 0;
+	int answer_right = N - 1;
 
-void CompareAnswer(int A, int B) {
-	if (abs(Answer1 + Answer2) > abs(A + B)) {
-		if (A > B) {
-			int temp = A;
-			A = B;
-			B = temp;
+	int index_left = 0;
+	int index_right = N - 1;
+
+	int min_sum = 2147483647;
+
+	while (index_left < index_right)
+	{
+		int sum = arr[index_left] + arr[index_right];
+		if (min_sum > abs(sum))
+		{
+			min_sum = abs(sum);
+			answer_left = index_left;
+			answer_right = index_right;
 		}
 
-		Answer1 = A;
-		Answer2 = B;
+		if (sum > 0) index_right--;
+		else if (sum < 0) index_left++;
+		else break;
 	}
+
+	cout << arr[answer_left] << ' ' << arr[answer_right];
 }
